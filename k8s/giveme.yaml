@@ -29,15 +29,6 @@ spec:
             memory: "250M"
         ports:
         - containerPort: 5000
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 5000
-          initialDelaySeconds: 0
-          timeoutSeconds: 5
-          periodSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
       dnsConfig:
         options:
           - name: ndots
@@ -53,7 +44,7 @@ spec:
   type: ClusterIP
   ports:
   - port: 80
-    targetPort: 8000
+    targetPort: 5000
   selector:
     app: giveme
 
