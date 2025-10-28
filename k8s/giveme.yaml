@@ -17,7 +17,7 @@ spec:
       - name: giveme
         image: ghcr.io/luisbrandao/giveme:1.0.5
         imagePullPolicy: Always
-        environment:
+        env:
         - name: PORT
           value: "5000"
         - name: APP_PASSWORD
