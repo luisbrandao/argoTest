@@ -17,7 +17,7 @@ spec:
       - name: giveme
         image: ghcr.io/luisbrandao/giveme:1.0.5
         imagePullPolicy: Always
-        env:
+        environment:
         - name: PORT
           value: "5000"
         - name: APP_PASSWORD
@@ -43,8 +43,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 5000
-    targetPort: 5000
+  - port: 80
+    targetPort: 8000
   selector:
     app: giveme
 
@@ -61,8 +61,8 @@ spec:
       paths:
       - backend:
           service:
-            name: ftpython
+            name: giveme
             port:
-              number: 5000
+              number: 80
         path: "/"
         pathType: Prefix
