@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: giveme
-        image: ghcr.io/luisbrandao/giveme:1.0.5
+        image: ghcr.io/luisbrandao/giveme:1.0.6
         imagePullPolicy: Always
         env:
         - name: PORT
@@ -37,11 +37,11 @@ spec:
     canary:  # Start with Canary strategy
       steps:
       - setWeight: 20    # Send 20% traffic to new version
-      - pause: {duration: 30s}
+      - pause: {duration: 60s}
       - setWeight: 50    # Send 50% traffic to new version
-      - pause: {duration: 30s}
+      - pause: {duration: 60s}
       - setWeight: 80    # Send 80% traffic to new version
-      - pause: {duration: 30s}
+      - pause: {duration: 60s}
 
 ---
 apiVersion: v1
