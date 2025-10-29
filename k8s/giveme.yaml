@@ -1,10 +1,10 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: giveme
   namespace: example-app
 spec:
-  replicas: 1
+  replicas: 3  # Increase for better demo
   selector:
     matchLabels:
       app: giveme
@@ -33,6 +33,15 @@ spec:
         options:
           - name: ndots
             value: "1"
+  strategy:
+    canary:  # Start with Canary strategy
+      steps:
+      - setWeight: 20    # Send 20% traffic to new version
+      - pause: {duration: 30s}
+      - setWeight: 50    # Send 50% traffic to new version
+      - pause: {duration: 30s}
+      - setWeight: 80    # Send 80% traffic to new version
+      - pause: {duration: 30s}
 
 ---
 apiVersion: v1
